@@ -2,25 +2,25 @@ package modelo;
 
 public class Filme {
 
-	private Integer id_filme;
-	private String nome_filme;
+	private Integer idFilme;
+	private String titulo;
 	private String diretor;
 	private String genero;
 
-	public Integer getId_filme() {
-		return id_filme;
+	public Integer getIdFilme() {
+		return idFilme;
 	}
 
-	public void setId_filme(Integer id_filme) {
-		this.id_filme = id_filme;
+	public void setIdFilme(Integer idFilme) {
+		this.idFilme = idFilme;
 	}
 
-	public String getNome_filme() {
-		return nome_filme;
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setNome_filme(String nome_filme) {
-		this.nome_filme = nome_filme;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public String getDiretor() {
