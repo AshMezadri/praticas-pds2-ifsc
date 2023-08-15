@@ -1,13 +1,17 @@
 package visao;
 
 import java.awt.EventQueue;
+import java.util.ArrayList;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import controle.FilmeDAO;
+import modelo.Filme;
 
 public class TelaFilme extends JFrame {
 
@@ -36,6 +40,14 @@ public class TelaFilme extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaFilme() {
+		
+		FilmeDAO dao = new FilmeDAO();
+		ArrayList<Filme> filmes = dao.listar() ;
+		
+		for (Filme filme : filmes) {
+			
+		}
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 310, 276);
 		contentPane = new JPanel();
