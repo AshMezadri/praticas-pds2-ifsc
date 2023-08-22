@@ -13,4 +13,6 @@ create table filme(
 	PRIMARY KEY (`idFilme`)
 );
 
+insert into filme (titulo, diretor, genero) values ('O filme', 'Diretor Foda', 'genero');
+
 SELECT * FROM filme order by idFilme;

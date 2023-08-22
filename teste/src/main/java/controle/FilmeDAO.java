@@ -25,19 +25,20 @@ public class FilmeDAO {
 			while (rs.next()) {
 				int idFilme = rs.getInt("idFilme");
 				String titulo = rs.getString("titulo");
-				
+
 				Filme f = new Filme();
 				f.setIdFilme(idFilme);
 				f.setTitulo(titulo);
-				
+
 				filmes.add(f);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			
+		} finally {
+			c.fecharConexao();
 		}
-		
-		c.fecharConexao();
 
 		return filmes;
 	}
@@ -57,61 +58,64 @@ public class FilmeDAO {
 
 			ps.executeUpdate();
 
-			c.fecharConexao();
-
 			return true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			
+		} finally {
+			c.fecharConexao();
 		}
 
 		return false;
 	}
-	
+
 	public boolean excluir(Filme f) {
-		
+
 		Conexao c = Conexao.getInstancia();
 		Connection con = c.conectar();
-		
+
 		String query = "DELETE FROM filme WHERE idFilme = ?";
-		
+
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			
+
 			ps.setInt(1, f.getIdFilme());
 			ps.executeUpdate();
-			
-			c.fecharConexao();
 
 			return true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			
+		} finally {
+			c.fecharConexao();
 		}
 
 		return false;
 	}
-	
+
 	public boolean atualizar(Filme f) {
-		
+
 		Conexao c = Conexao.getInstancia();
 		Connection con = c.conectar();
-		
+
 		String query = "UPDATE filme SET titulo = ? WHERE idFilme = ?";
-		
+
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, f.getTitulo());
 			ps.setInt(2, f.getIdFilme());
-			
+
 			ps.executeUpdate();
-			
-			c.fecharConexao();
 
 			return true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			
+		} finally {
+			c.fecharConexao();
 		}
 
 		return false;
