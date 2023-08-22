@@ -13,7 +13,6 @@ public class FilmeDAO {
 	public ArrayList<Filme> listar() {
 
 		Conexao c = Conexao.getInstancia();
-
 		Connection con = c.conectar();
 
 		ArrayList<Filme> filmes = new ArrayList<>();
@@ -35,7 +34,6 @@ public class FilmeDAO {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -47,7 +45,6 @@ public class FilmeDAO {
 	public boolean inserir(Filme f) {
 
 		Conexao c = Conexao.getInstancia();
-
 		Connection con = c.conectar();
 
 		String query = "INSERT INTO filme (nome_filme, diretor, genero) values (?, ?, ?)";
@@ -65,7 +62,55 @@ public class FilmeDAO {
 			return true;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+	
+	public boolean excluir(Filme f) {
+		
+		Conexao c = Conexao.getInstancia();
+		Connection con = c.conectar();
+		
+		String query = "DELETE FROM filme WHERE idFilme = ?";
+		
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			
+			ps.setInt(1, f.getIdFilme());
+			ps.executeUpdate();
+			
+			c.fecharConexao();
+
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+	
+	public boolean atualizar(Filme f) {
+		
+		Conexao c = Conexao.getInstancia();
+		Connection con = c.conectar();
+		
+		String query = "UPDATE filme SET titulo = ? WHERE idFilme = ?";
+		
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, f.getTitulo());
+			ps.setInt(2, f.getIdFilme());
+			
+			ps.executeUpdate();
+			
+			c.fecharConexao();
+
+			return true;
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 

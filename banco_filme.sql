@@ -1,6 +1,7 @@
+
 Drop database if exists banco_filme; 
 
-create database banco_filme;
+CREATE DATABASE if not EXISTS banco_filme;
 
 use banco_filme;
 
@@ -11,3 +12,5 @@ create table filme(
 	`genero` VARCHAR(45) NOT NULL,
 	PRIMARY KEY (`idFilme`)
 );
+
+SELECT * FROM filme order by idFilme;
